@@ -69,6 +69,6 @@ export default function WeatherSearch() {
       </div>
     );
   } else {
-    return <>{form}</>;
+    return <>{form}<br>Loading...</br></>;
   }
 }

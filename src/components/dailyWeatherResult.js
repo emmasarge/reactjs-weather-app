@@ -30,8 +30,8 @@ export default function DailyWeatherResult(props) {
       <div className="col-6 ps-4">
         <div>
           <p id="date-time">{currentTime}</p>
-          <h3>{props.city}</h3>
-          <p id="weather-condition">{props.condition}</p>
+          <h3 className="text-capitalize">{props.city}</h3>
+          <p className="text-capitalize" id="weather-condition">{props.condition}</p>
           <p className="temperature">
             <span id="showTemp">{props.temperature}º </span>
             <span id="showC">C</span>
