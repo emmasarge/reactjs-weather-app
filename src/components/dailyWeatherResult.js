@@ -1,4 +1,5 @@
 import React from "react";
+import WeatherIcon from "./weatherIcon";
 
 
 export default function DailyWeatherResult(props) {
@@ -26,7 +27,7 @@ export default function DailyWeatherResult(props) {
   let currentTime = `${day} ${hours}:${minutes}`;
   console.log(props.data.wind)
   return (
-    <div className="d-flex row g-3 align-items-center mt-2 mb-3">
+    <div className="d-flex row g-3 align-items-center mt-2 mb-4">
       <div className="col-6 ps-4">
         <div>
           <p id="date-time">{currentTime}</p>
@@ -44,15 +45,9 @@ export default function DailyWeatherResult(props) {
           </p>
         </div>
       </div>
-      <div className="col-6">
-        <div className="mx-auto">
-          <img
-            src={props.data.icon}
-            alt={props.data.description}
-            id="icon"
-            className="float-left weather-icon"
-            width="100px"
-          />
+      <div className="col">
+        <div className="d-flex justify-content-end me-4">
+        <WeatherIcon code={props.data.iconDay} size={100} />
         </div> 
       </div>
     </div>

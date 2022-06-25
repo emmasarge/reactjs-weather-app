@@ -55,6 +55,9 @@ a:hover {
 .spinner svg {
 margin: auto;
 }
+canvas {
+  align-content: center;
+  }
 .weather-forecast-temperature-min {
   color: lightgray;
 }
