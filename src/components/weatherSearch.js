@@ -1,35 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
-import DailyWeatherResult from './dailyWeatherResult';
+import DailyWeatherResult from "./dailyWeatherResult";
+import WeatherForecast from "./weatherForecast";
+import { TailSpin } from "react-loader-spinner";
 
 export default function WeatherSearch(props) {
-  const [city, setCity] = useState(props.defaultCity);
-  const [loaded, setLoaded] = useState(false);
-  const [weather, setWeather] = useState({});
+    const [weather, setWeather] = useState({ ready: false });
+    const [city, setCity] = useState(props.defaultCity);
+
 
   function displayWeather(response) {
-    setLoaded(true);
     setWeather({
-      temperature: response.data.main.temp,
-      wind: response.data.wind.speed,
-      humidity: response.data.main.humidity,
+      ready: true,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      description: response.data.weather[0].description
+      coordinates: response.data.coord,
+      temperature: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      wind: response.data.wind.speed,
+      city: response.data.name,
+      iconDay: response.data.weather[0].icon,
     });
   }
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "2de1414d2167da92d347476a4e1097e6";
+    search();
+  }
+  function updateCity(event) {
+    setCity(event.target.value);
+  }
+  function search() {
+    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeather);
   }
-  function updateCity(event) {
-    event.preventDefault();
-    setCity(event.target.value);
-  }
 
-  let form = (
-    <form onSubmit={handleSubmit} className="row g-3 align-items-center">
+  if (weather.ready) {
+    return (
+      <div className="Weather">
+         <form onSubmit={handleSubmit} className="row g-3 align-items-center">
       <div className="col">
         <input
           type="text"
@@ -53,23 +63,19 @@ export default function WeatherSearch(props) {
         </button>
       </div>
     </form>
-  );
-  if (loaded) {
-    return (
-      <div>
-        {form}
-        <DailyWeatherResult
-          city={city}
-          temperature={Math.round(weather.temperature)}
-          condition={weather.description}
-          humidity={weather.humidity}
-          wind={weather.wind}
-          icon={weather.icon}
-        />
+        <DailyWeatherResult data={weather}/>
+        <WeatherForecast coordinates={weather.coordinates} data={weather} />
       </div>
     );
   } else {
-    return (<div>{form}<div className="mt-4 text-center">Loading...</div></div>
-    );
+    search();
+    <div>
+      <div className="mt-4 text-center">
+        Loading...
+        <div className="spinner my-3">
+          <TailSpin color="grey" height={40} width={40} />
+        </div>
+      </div>
+    </div>;
   }
 }

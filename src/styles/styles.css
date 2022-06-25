@@ -37,18 +37,7 @@ img {
   font-weight: 200;
   font-size: 14px;
 }
-#showC:hover {
-  font-size: larger;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-#showF:hover {
-  font-size: larger;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
+
 .open-source {
   font-size: 10px;
   font-weight: 200;
@@ -63,7 +52,17 @@ a:hover {
 .forecast-col {
   padding: 0 !important;
 }
+.spinner svg {
+margin: auto;
+}
+.weather-forecast-temperature-min {
+  color: lightgray;
+}
+.weather-forecast-date {
+  font-size: 20px;
+  font-weight: 400;
 
+}
 @media (max-width: 500px) {
   .btn {
     min-width: 300px !important;

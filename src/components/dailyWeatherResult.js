@@ -24,36 +24,36 @@ export default function DailyWeatherResult(props) {
   ];
   let day = days[dayIndex];
   let currentTime = `${day} ${hours}:${minutes}`;
-
+  console.log(props.data.wind)
   return (
     <div className="d-flex row g-3 align-items-center mt-2 mb-3">
       <div className="col-6 ps-4">
         <div>
           <p id="date-time">{currentTime}</p>
-          <h3 className="text-capitalize">{props.city}</h3>
-          <p className="text-capitalize" id="weather-condition">{props.condition}</p>
+          <h3 className="text-capitalize">{props.data.city}</h3>
+          <p className="text-capitalize" id="weather-condition">{props.data.condition}</p>
           <p className="temperature">
-            <span id="showTemp">{props.temperature}º </span>
+            <span id="showTemp">{props.data.temperature}º </span>
             <span id="showC">C</span>
           </p>
           <p>
-            Humidity: <span id="humidity">{props.humidity}</span>%
+            Humidity: <span id="humidity">{props.data.humidity}</span>%
           </p>
           <p>
-            Windspeed: <span id="wind">{props.wind}</span> km/hr
+            Windspeed: <span id="wind">{props.data.wind}</span> km/hr
           </p>
         </div>
       </div>
       <div className="col-6">
         <div className="mx-auto">
           <img
-            src={props.icon}
-            alt={props.description}
+            src={props.data.icon}
+            alt={props.data.description}
             id="icon"
             className="float-left weather-icon"
             width="100px"
           />
-        </div>
+        </div> 
       </div>
     </div>
   );
