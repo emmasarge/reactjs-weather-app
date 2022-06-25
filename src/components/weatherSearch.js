@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import DailyWeatherResult from './dailyWeatherResult';
 
-export default function WeatherSearch() {
-  const [city, setCity] = useState("");
+export default function WeatherSearch(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState({});
 
@@ -69,6 +69,7 @@ export default function WeatherSearch() {
       </div>
     );
   } else {
-    return <>{form}<br>Loading...</br></>;
+    return (<div>{form}<div className="mt-4 text-center">Loading...</div></div>
+    );
   }
 }

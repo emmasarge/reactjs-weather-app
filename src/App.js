@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div className="App container weather-app">
       <div className="weather-body mt-3">
-        <WeatherSearch />
+        <WeatherSearch defaultCity={"Paris"} />
       </div>
     </div>
   );
