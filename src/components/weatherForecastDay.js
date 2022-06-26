@@ -12,11 +12,6 @@ export default function WeatherForecastDay(props) {
     return `${temperature}°`;
   }
 
-  function icon() {
-    let icon = `http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`;
-
-    return <img src={icon} width="70" alt={props.data.description}  className="forecast-img"/>;
-  }
   function day() {
     let date = new Date(props.data.dt * 1000);
     let day = date.getDay();

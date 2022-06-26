@@ -1,7 +1,7 @@
 import "./styles/styles.css";
 import WeatherSearch from "./components/weatherSearch";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import React, { useState } from "react";
+
 
 export default function App() {
 
@@ -18,6 +18,7 @@ export default function App() {
           <a
             href="https://github.com/emmasarge/reactjs-weather-app"
             target="_blank"
+            rel="noreferrer"
           >
             Emma Sargeant
           </a>

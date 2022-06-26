@@ -65,6 +65,18 @@ canvas {
   font-size: 20px;
   font-weight: 400;
 
+}  .metric-imperial-btn {
+    font-size: 12px;
+    cursor:pointer;
+    font-weight: 300;
+    color: grey;
+  }
+ .metric-imperial-btn:hover {
+  font-size: 13px;
+  cursor:pointer;
+  font-weight: 400;
+  color: coral;
+  transition: ease-in 0.5s all;
 }
 @media (max-width: 500px) {
   .btn {
@@ -73,6 +85,7 @@ canvas {
   input {
     min-width: 300px !important;
   }
+
 
   .forecast-row {
     border-top: 1px solid grey;

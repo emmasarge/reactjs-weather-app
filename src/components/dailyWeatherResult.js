@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import WeatherIcon from "./weatherIcon";
 
-
 export default function DailyWeatherResult(props) {
+  let [showMetric, setFarenheit] = useState(true);
+  let [celsius, setShowFarenheit] = useState(props.data.temperature);
+  let [metric, setImperial] = useState("Show imperial");
+  let [metricSymbol, setImperialSymbol] = useState("C");
+
+  function showFarenheit() {
+    setShowFarenheit(Math.round(props.data.temperature * (9 / 5) + 32));
+    setImperial("Show metric");
+    setImperialSymbol("F");
+    setFarenheit(false);
+  }
+  function showCelsius() {
+    setShowFarenheit(props.data.temperature);
+    setImperial("Show imperial");
+    setImperialSymbol("C");
+    setFarenheit(true);
+  }
+
   let date = new Date();
   let hours = date.getHours();
   if (hours < 10) {
@@ -21,22 +38,29 @@ export default function DailyWeatherResult(props) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[dayIndex];
   let currentTime = `${day} ${hours}:${minutes}`;
-  console.log(props.data.wind)
+
   return (
     <div className="d-flex row g-3 align-items-center mt-2 mb-4">
       <div className="col-6 ps-4">
         <div>
           <p id="date-time">{currentTime}</p>
           <h3 className="text-capitalize">{props.data.city}</h3>
-          <p className="text-capitalize" id="weather-condition">{props.data.condition}</p>
-          <p className="temperature">
-            <span id="showTemp">{props.data.temperature}º </span>
-            <span id="showC">C</span>
+          <p className="text-capitalize" id="weather-condition">
+            {props.data.condition}
           </p>
+
+          <div>
+            <p className="temperature">
+              <span>{celsius}º </span>
+              <span>{metricSymbol}</span>
+            </p>
+            {showMetric && <p className="metric-imperial-btn" onClick={showFarenheit}>{metric}</p>}{" "}
+            {!showMetric && <p className="metric-imperial-btn" onClick={showCelsius}>{metric}</p>}
+          </div>
           <p>
             Humidity: <span id="humidity">{props.data.humidity}</span>%
           </p>
@@ -47,8 +71,8 @@ export default function DailyWeatherResult(props) {
       </div>
       <div className="col">
         <div className="d-flex justify-content-end me-4">
-        <WeatherIcon code={props.data.iconDay} size={100} />
-        </div> 
+          <WeatherIcon code={props.data.iconDay} size={100} />
+        </div>
       </div>
     </div>
   );
