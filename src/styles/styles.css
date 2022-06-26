@@ -65,7 +65,12 @@ canvas {
   font-size: 20px;
   font-weight: 400;
 
-}  .metric-imperial-btn {
+}  
+
+.divider {
+  color: lightgray;
+}
+.metric-imperial-btn {
     font-size: 12px;
     cursor:pointer;
     font-weight: 300;
@@ -77,6 +82,11 @@ canvas {
   font-weight: 400;
   color: coral;
   transition: ease-in 0.5s all;
+}
+.temp-active{
+  font-weight:500;
+  color: slategray;
+  font-size: 14px;;
 }
 @media (max-width: 500px) {
   .btn {

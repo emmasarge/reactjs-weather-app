@@ -1,24 +1,9 @@
+
 import React, { useState } from "react";
 import WeatherIcon from "./weatherIcon";
+import WeatherTemperature from "./weatherTemp";
 
 export default function DailyWeatherResult(props) {
-  let [showMetric, setFarenheit] = useState(true);
-  let [celsius, setShowFarenheit] = useState(props.data.temperature);
-  let [metric, setImperial] = useState("Show imperial");
-  let [metricSymbol, setImperialSymbol] = useState("C");
-
-  function showFarenheit() {
-    setShowFarenheit(Math.round(props.data.temperature * (9 / 5) + 32));
-    setImperial("Show metric");
-    setImperialSymbol("F");
-    setFarenheit(false);
-  }
-  function showCelsius() {
-    setShowFarenheit(props.data.temperature);
-    setImperial("Show imperial");
-    setImperialSymbol("C");
-    setFarenheit(true);
-  }
 
   let date = new Date();
   let hours = date.getHours();
@@ -54,12 +39,7 @@ export default function DailyWeatherResult(props) {
           </p>
 
           <div>
-            <p className="temperature">
-              <span>{celsius}º </span>
-              <span>{metricSymbol}</span>
-            </p>
-            {showMetric && <p className="metric-imperial-btn" onClick={showFarenheit}>{metric}</p>}{" "}
-            {!showMetric && <p className="metric-imperial-btn" onClick={showCelsius}>{metric}</p>}
+          <WeatherTemperature celsius={props.data.temperature} />
           </div>
           <p>
             Humidity: <span id="humidity">{props.data.humidity}</span>%
