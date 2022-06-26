@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React from "react";
 import WeatherIcon from "./weatherIcon";
 import WeatherTemperature from "./weatherTemp";
 
